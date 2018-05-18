@@ -4,7 +4,7 @@ var path = require('path');
 var htmlBundle = require('html-webpack-plugin');
 
 var src = path.resolve(__dirname, 'src/');
-var entryPath = path.resolve(__dirname, 'src/components/js/');
+var entryPath = path.resolve(__dirname, 'src/');
 var outPath = path.resolve(__dirname);
 
 module.exports = {
@@ -62,7 +62,7 @@ module.exports = {
         new htmlBundle({
             template: path.join(src, 'index.html'),
             filename: 'index.html',
-            inject: 'head'
+            inject: 'body'
         })
     ],
     output: {
