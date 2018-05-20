@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import App from './components/containers/js/App';
@@ -8,7 +8,7 @@ import App from './components/containers/js/App';
 import combineReducers from './reducers/reducers';
 
 
-var store = createStore(combineReducers, applyMiddleware(thunk));
+var store = compose(applyMiddleware(thunk))(createStore)(combineReducers);
 
 ReactDOM.render(
     <Provider store={store}>

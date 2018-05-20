@@ -14,32 +14,36 @@ export function fetchSuccess(bool){
 }
 
 export function fetchTimeline(screenName){
-    return dispatch => (
-        fetch(apiUrl + '/user-timeline', {
-            mode: 'no-cors',
+    return dispatch => {
+        return fetch(apiUrl + '/user-timeline', {
             method: 'POST',
-            body: screenName
-        })
-            .then(response => {
-                let res;
-                if(!response){
-                    console.log('Something go wrong'); 
-                    // dispatch(fetchFailed(true))
-                }else {
-                    res = response.json;
-                }
-                console.log("nice fetch", response);
-                return res;
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                'user': screenName
             })
-            .then(
-                (json) => {
-                    
-                    // dispatch(fetchSuccess(true));
-                    dispatch(receiveTimeline(json));
-                }
+        })
+        .then(response => {
+            let res;
+            if(!response){
+                
+            }else {
+                dispatch(fetchSuccess(true))
+                res = response.json();
+            }
+            return res;
+        })
+        .then(
+            (json) => (
+                dispatch(receiveTimeline(json))
             )
-            .catch(
-                err => console.log(err)
-            )
-    );
+        )
+        .catch(
+            err => {
+                console.log(err); 
+                dispatch(fetchFailed(true));
+            }
+        );
+    };
 }

@@ -20,24 +20,14 @@ const mapDispatchToProps = function(dispatch){
 };
 
 class App extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            
-        };
-        console.log(this.props);
-    }
     render(){
         let props = this.props;
         return(
             <div>
                 <AppView {...props}/>
-                
             </div>
         );
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
-
-// export default App;

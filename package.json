@@ -46,13 +46,16 @@
   },
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "extract-loader": "^2.0.1",
     "file-loader": "^1.1.11",
     "node-sass": "^4.9.0",
+    "oauth": "^0.9.15",
     "prop-types": "^15.6.1",
     "redux-thunk": "^2.2.0",
-    "superagent": "^3.8.3"
+    "superagent": "^3.8.3",
+    "thunk": "0.0.1"
   },
   "babel": {
     "presets": [
