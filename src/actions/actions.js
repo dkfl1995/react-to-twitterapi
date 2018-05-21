@@ -1,16 +1,22 @@
 const apiUrl = 'http://localhost:3000';
 
-export function receiveTimeline(json){
-    type: 'RECEIVE_TIMELINE',
-    json
+function receiveTimeline(json){
+    return {
+        type: 'RECEIVE_TIMELINE',
+        json
+    };
 }
 
-export function fetchFailed(bool){
-    type: 'FETCH_FAILED'
+function fetchFailed(bool){
+    return {
+        type: 'FETCH_FAILED'
+    };
 }
 
-export function fetchSuccess(bool){
-    type: 'FETCH_SUCCESS'
+function fetchSuccess(bool){
+    return {
+        type: 'FETCH_SUCCESS'
+    };
 }
 
 export function fetchTimeline(screenName){
@@ -22,26 +28,26 @@ export function fetchTimeline(screenName){
             },
             body: JSON.stringify({
                 'user': screenName
-            })
+            })  
         })
         .then(response => {
-            let res;
-            if(!response){
+            console.log(typeof response);
+            console.log(response.status);
+            if(response.status === '200'){
+                dispatch(fetchSuccess(true));
                 
-            }else {
-                dispatch(fetchSuccess(true))
-                res = response.json();
             }
-            return res;
+            return response.json();
         })
         .then(
-            (json) => (
-                dispatch(receiveTimeline(json))
-            )
+            json => {
+                console.log(json.body);
+                dispatch(receiveTimeline(json));
+            }
         )
         .catch(
             err => {
-                console.log(err); 
+                console.log('Err: '+err); 
                 dispatch(fetchFailed(true));
             }
         );

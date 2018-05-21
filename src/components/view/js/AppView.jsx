@@ -1,6 +1,7 @@
 'use strict';
 
 import React, {Component} from 'react';
+import Comment from './Comment.jsx';
 import '.././scss/App.scss';
 
 class AppView extends Component{
@@ -8,16 +9,32 @@ class AppView extends Component{
         super(props);
         this.state = {
             username: '',
-            timeline: this.props.state
+            timeline: []
         };
         this.updateInputState = this.updateInputState.bind(this);
-        console.log(this.props);
+        this.buildComments = this.buildComments.bind(this);
+        console.log("our timeline: ", this.props.state);
     }
     updateInputState(e){
         this.setState({username: e.target.value});
     }
-    submitForm(){
-
+    componentWillReceiveProps(nextProps){
+        if(nextProps.state !== this.props.state){
+            console.log('Update: ', this.state);
+            this.setState({timeline: nextProps.state});
+        }
+    }
+    buildComments(){
+        var timeline = this.state.timeline;
+        if(typeof timeline === 'object'){
+            var list = Object.values(timeline).map((value, index) => {
+                return <div key={index}><Comment {...value} /></div> 
+            });
+            if (!list){return <div></div>}else{return list;}
+            
+        }else{
+            return null;
+        }
     }
     render(){
         return (
@@ -35,6 +52,9 @@ class AppView extends Component{
                                 <div className="d-flex justify-content-center">
                                     <input type="submit" value="Get dat timeline"/> 
                                 </div>
+                            </div>
+                            <div className="comments">
+                                {this.buildComments(this.state)}
                             </div>
                         </div>
                     </div>

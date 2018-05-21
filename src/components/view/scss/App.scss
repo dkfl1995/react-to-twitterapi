@@ -3,3 +3,25 @@ $wh: white;
 body{
     background: $wh;
 }
+
+.comments{
+    width: 100%;
+    min-width: 320px;
+    margin: 2%;
+}
+
+.comment{
+    margin: 0 auto;
+    width: 80%;
+    min-width: 300px;
+    border: 1px solid rgba(30, 30, 30, .05);
+    background: rgba(240, 237, 240, 0.2);
+    padding: 2%;
+}
+
+.info{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 2%;
+}

@@ -1,9 +1,11 @@
 'use strict';
 import {combineReducers} from 'redux';
 import {timeline} from '../store/store';
-var initialState = timeline;
 
-function fetchSuccess(state = initialState, action){
+var initialState = [];
+console.log(initialState);
+
+function fetchSuccess(state = false, action){
     switch (action.type) {
         case 'FETCH_SUCCESS':
             return action.type;
@@ -13,7 +15,7 @@ function fetchSuccess(state = initialState, action){
     }
 }
 
-function fetchFail(state = initialState, action){
+function fetchFail(state = false, action){
     switch (action.type) {
         case 'FETCH_FAILED':
             return action.type;
@@ -26,14 +28,16 @@ function fetchFail(state = initialState, action){
 function receiveTimeline(state = initialState, action){
     switch(action.type){
         case 'RECEIVE_TIMELINE':
+            console.log("res: ", action.json);
             return Object.assign({}, state, action.json);
         default:
             return state;
     }
 }
 
-export default combineReducers({
+const rootReducer = combineReducers({
     receiveTimeline, 
     fetchFail, 
     fetchSuccess
 });
+export default rootReducer;
