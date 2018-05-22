@@ -3,6 +3,7 @@
 const net = require('net');
 const superagent = require('superagent');
 const cors = require('cors');
+const path = require('path');
 
 const express = require('express');
 const route = express.Router();
@@ -15,6 +16,8 @@ const twitterApiHost = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
 var PORT = process.env.PORT || 3000;
 
 var app = express();
+
+app.use(express.static(path.join(__dirname+'/dist')));
 
 app.use(cors());
 app.use(bodyParser());
@@ -45,6 +48,10 @@ route.post('/user-timeline', parser, (req, res) => {
             console.log(json);
             res.send(json);
     });
+});
+
+route.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/dist/index.html'));
 });
 
 const server = app.listen(PORT, (err) => {

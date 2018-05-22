@@ -24,11 +24,11 @@ class AppView extends Component{
             this.setState({timeline: nextProps.state});
         }
     }
-    buildComments(){
-        var timeline = this.state.timeline;
+    buildComments(timeline){
+        console.log('BUILDING');
         if(typeof timeline === 'object'){
             var list = Object.values(timeline).map((value, index) => {
-                return <div key={index}><Comment {...value} /></div> 
+                return <div key={value.id_str}><Comment {...value} /></div> 
             });
             if (!list){return <div></div>}else{return list;}
             
@@ -37,6 +37,8 @@ class AppView extends Component{
         }
     }
     render(){
+        // var comments = null;
+        // comments = this.buildComments(this.state.timeline);
         return (
             <div>
                 <form onSubmit={(e) => {e.preventDefault(); this.props.fetchUserTimeline(this.state.username)}}>
@@ -54,7 +56,7 @@ class AppView extends Component{
                                 </div>
                             </div>
                             <div className="comments">
-                                {this.buildComments(this.state)}
+                                {this.buildComments(this.state.timeline)}
                             </div>
                         </div>
                     </div>
