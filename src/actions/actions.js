@@ -1,5 +1,3 @@
-const apiUrl = 'http://localhost:3000';
-
 function receiveTimeline(json){
     return {
         type: 'RECEIVE_TIMELINE',
@@ -21,7 +19,7 @@ function fetchSuccess(bool){
 
 export function fetchTimeline(screenName){
     return dispatch => {
-        return fetch(apiUrl + '/user-timeline', {
+        return fetch('/user-timeline', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
