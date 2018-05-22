@@ -9,7 +9,7 @@ const express = require('express');
 const route = express.Router();
 const bodyParser = require('body-parser');
 
-var OAuth = require('OAuth');
+var OAuth = require('oauth');
 
 const twitterApiHost = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
 
