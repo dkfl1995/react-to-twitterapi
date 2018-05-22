@@ -2,7 +2,7 @@
   "name": "react-to-twitterapi",
   "version": "1.0.0",
   "description": "Task to create a simple webapp to show public user twitter timelines, of user you tap into app.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "server": "node server.js",
     "start": "node server.js",
