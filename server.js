@@ -22,12 +22,12 @@ app.use(express.static(path.join(__dirname+'/dist')));
 app.use(cors());
 
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://<YOUR-APP-NAME>.herokuapp.com");
+    res.header("Access-Control-Allow-Origin", "http://sleepy-earth-19112.herokuapp.com");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
 
-  
+
 app.use(bodyParser());
 app.use(route);
 
